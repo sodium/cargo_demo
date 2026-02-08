@@ -3,6 +3,7 @@ spring:
     mongodb:
       database: myappdb
       uri: mongodb://appuser:apppassword@cargodb:27017/myappdb?authSource=myappdb
+      #uri: mongodb://appuser:apppassword@localhost:27017/myappdb?authSource=myappdb
   application:
     name: dbapi
 

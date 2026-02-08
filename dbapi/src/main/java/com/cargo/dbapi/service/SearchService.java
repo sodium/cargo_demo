@@ -1,7 +1,6 @@
 package com.cargo.dbapi.service;
 
 import com.cargo.dbapi.model.Cargodb;
-import com.cargo.dbapi.repository.CargodbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.mongodb.client.MongoDatabase;
@@ -21,16 +20,8 @@ import com.cargo.dbapi.model.Payload;
 
 @Service
 public class SearchService {
-
-    private final CargodbRepository repository;
-
     @Autowired
     MongoClient mongoClient;
-
-    @Autowired
-    public SearchService(CargodbRepository repository) {
-        this.repository = repository;
-    }
 
     public List<Document> findAllCargo(Payload payload) {
         String carrierCode = payload.getCarrierCode();
@@ -40,24 +31,45 @@ public class SearchService {
         String flightStatus = payload.getFlightStatus();
         //TODO: validate input parameters and build query accordingly
 
-
         Document filter = new Document();
-        if(carrierCode != null){
-            filter.append("carrierCode", carrierCode);
+
+        if (carrierCode != null && !carrierCode.isEmpty()) {
+            if (!carrierCode.matches("^[A-Za-z]{2}$")) {
+                throw new IllegalArgumentException("Invalid carrierCode.");
+            }
+            filter.append("carrierCode", carrierCode.toUpperCase());
         }
-        if (flightNo != null) {
+
+        if (flightNo != null && !flightNo.isEmpty()) {
+            if (!flightNo.matches("^\\d{1,5}$")) {
+                throw new IllegalArgumentException("Invalid flightNo");
+            }
             filter.append("flightNo", flightNo);
         }
+
         if (flightDate != null) {
-            // TODO: format date time
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String formattedDate = flightDate.format(formatter);
-            filter.append("flightDate", formattedDate);
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                formatter.parse(flightDate.toString());
+                String formattedDate = flightDate.format(formatter);
+                filter.append("flightDate", formattedDate);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Invalid flightDate.");
+            }
         }
-        if (origin != null) {
-            filter.append("origin", origin);
+
+        if (origin != null && !origin.isEmpty()) {
+            if (!origin.matches("^[A-Za-z]{3}$")) {
+                throw new IllegalArgumentException("Invalid origin.");
+            }
+            filter.append("origin", origin.toUpperCase());
         }
-        if (flightStatus != null) {
+
+        if (flightStatus != null && !flightStatus.isEmpty()) {
+            List<String> validStatuses = List.of("Not_yet_departed", "Departed", "Arrived", "Cancelled");
+            if (!validStatuses.contains(flightStatus)) {
+                throw new IllegalArgumentException("Invalid flightStatus.");
+            }
             filter.append("flightStatus", flightStatus);
         }
 
@@ -69,16 +81,10 @@ public class SearchService {
 
 
         for (Document doc : collection.find(filter)) {
-            // Convert each Document to a JSON string
-            //String jsonString = doc.toJson();
+
             jsonResults.add(doc);
         }
-        //Document myDoc = collection.find().first();
-        //System.out.println(jsonResults);
 
-        //List<Cargodb> result = repository.findAll();
-
-        //System.out.print("result: "+result);
         return jsonResults;
     }
 }
