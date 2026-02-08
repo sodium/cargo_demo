@@ -1,0 +1,14 @@
+# Use an official OpenJDK runtime as a parent image
+FROM eclipse-temurin:17-jdk
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the application JAR file from your host to the container's /app directory
+COPY target/*.jar app.jar
+
+# Expose the port the app runs on (default is 8080 for Spring Boot)
+EXPOSE 8080
+
+# Run the JAR file when the container launches
+ENTRYPOINT ["java", "-jar", "app.jar"]

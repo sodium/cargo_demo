@@ -1,0 +1,22 @@
+.react-router
+README.md
+# dependencies
+node_modules
+.pnpm-store
+
+# local development
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+
+# build
+build
+dist
+
+# misc
+.git
+.gitignore
+.DS_Store
+npm-debug.log
+yarn-error.log

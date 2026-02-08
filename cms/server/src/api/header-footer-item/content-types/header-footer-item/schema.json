@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "header_footer_items",
+  "info": {
+    "singularName": "header-footer-item",
+    "pluralName": "header-footer-items",
+    "displayName": "HeaderFooterItem"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "chinese_text": {
+      "type": "string"
+    },
+    "english_url": {
+      "type": "string"
+    },
+    "chinese_url": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "display_as_image": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "section": {
+      "type": "enumeration",
+      "required": true,
+      "default": "footer",
+      "enum": [
+        "header",
+        "footer"
+      ]
+    },
+    "group": {
+      "type": "enumeration",
+      "required": false,
+      "default": "others",
+      "enum": [
+        "header::icon",
+        "header::menu",
+        "footer::about",
+        "footer::privacy",
+        "footer::tnc",
+        "footer::subsidiaries",
+        "footer::folow",
+        "others"
+      ]
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "english_text": {
+      "type": "string",
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 999
+    },
+    "external_site": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

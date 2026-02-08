@@ -1,0 +1,66 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: cargodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: rootuser
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_INITDB_DATABASE: myappdb # This DB will be created if an init script uses it
+    volumes:
+#      - mongodb_data:/data/db
+      - ./db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - mongodb_network
+  app:
+    image: my-spring-boot-app:latest
+    build:
+      context: ./dbapi/.
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    container_name: spring-boot-app
+    networks:
+      - mongodb_network
+  strapi:
+    build:
+      context: ./cms/server/.
+      dockerfile: Dockerfile
+    container_name: strapi-app
+    ports:
+      - '1337:1337'
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: cmsdb
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi_password
+      # Ensure you set your App details in your .env file
+    # volumes:
+      #- ./cms/server/migrations:/tmp/migrations # Persist migrations
+      # - ./cms/server/app:/opt/app/src # Mount source code for development (optional for production)
+      # - ./cms/server/data/uploads:/opt/app/public/uploads # Persist uploads
+    networks:
+      - mongodb_network
+  cmsdb:
+    image: postgres:13-alpine # Use a specific version, e.g., 13-alpine
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi_password
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data # Persist database data    
+    networks:
+      - mongodb_network
+
+
+
+networks:
+  mongodb_network:
+    name: mongodb_network
+

@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      database: myappdb
+      uri: mongodb://appuser:apppassword@cargodb:27017/myappdb?authSource=myappdb
+  application:
+    name: dbapi
+
+server:
+    port: 8080
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
