@@ -9,6 +9,7 @@ import type {
   BannerResponse,
 } from "../types/cms";
 import { getCMSUrl } from "~/root";
+import { getImageBaseUrl } from "~/root";
 
 interface LoaderData {
   articlesData: ArticleResponse;
@@ -51,7 +52,7 @@ export function meta(/*{}: Route.MetaArgs */) {
 
 export default function IndexRoute({ loaderData }: { loaderData: LoaderData }) {
   if (!loaderData) return <p>No data found</p>;
-  const baseUrl = getCMSUrl();
+  const baseUrl = getImageBaseUrl();
   const banner = loaderData.bannerData?.data?.[0] || null;
 
   const bannerImageUrl = banner?.image?.url

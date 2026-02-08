@@ -77,7 +77,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export const getCMSUrl = () => {
-  return process.env.VITE_STRAPI_URL || "http://localhost:1337";
+  if (typeof process !== "undefined") {
+    return process.env.VITE_STRAPI_URL || "http://localhost:1337";
+  }
+  return import.meta.env.VITE_STRAPI_URL || "http://localhost:1337";
+};
+
+export const getImageBaseUrl = () => {
+  if (typeof process !== "undefined") {
+    return process.env.CLIENT_IMAGE_BASE_URL || "http://localhost:1337";
+  }
+  return import.meta.env.CLIENT_IMAGE_BASE_URL || "http://localhost:1337";
 };
 
 export default function App({ loaderData }: Route.ComponentProps) {

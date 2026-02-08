@@ -1,4 +1,5 @@
 import { getCMSUrl } from "~/root";
+import { getImageBaseUrl } from "~/root";
 
 interface StrapiImageProps {
   src: string;
@@ -8,7 +9,7 @@ interface StrapiImageProps {
   className?: string;
 }
 
-const STRAPI_API_URL = getCMSUrl();
+const STRAPI_API_URL = getImageBaseUrl();
 
 export function getStrapiMedia(url: string | null) {
   if (url == null) return null;

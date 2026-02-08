@@ -1,4 +1,5 @@
 import { getCMSUrl } from "~/root";
+import { getImageBaseUrl } from "~/root";
 
 interface NavItem {
   label: string;
@@ -60,6 +61,7 @@ function FooterColumn({ title, items }: FooterColumnProps) {
 
         const groupImageItems = navItems.filter((item) => item.group?.toLowerCase() === "footer::folow");
         const cmsBaseUrl = getCMSUrl();
+        const imageBaseUrl = getImageBaseUrl();
 
     return (
         <footer className="bg-green-900 text-white">

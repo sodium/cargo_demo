@@ -1,4 +1,5 @@
 import { getCMSUrl } from "~/root";
+import { getImageBaseUrl } from "~/root";
 
 interface NavItem {
   label: string;
@@ -23,7 +24,7 @@ export function HeaderTemplate({
 }: HeaderTemplateProps) {
     const logoItems = navItems.find((item) => item.group?.toLowerCase() === "header::icon");
     const menuItems = navItems.filter((item) => item.group?.toLowerCase() === "header::menu");
-    const logoUrl = logoItems ? getCMSUrl() + logoItems.imageUrl : "";
+    const logoUrl = logoItems ? getImageBaseUrl() + logoItems.imageUrl : "";
   return (
     <header className="border-b border-slate-200 bg-white">
     <div className="container mx-auto">

@@ -66,6 +66,7 @@ services:
       - '3000:3000'
     environment:
       VITE_STRAPI_URL: http://strapi:1337
+      CLIENT_IMAGE_BASE_URL: http://localhost:1337
     networks:
       - mongodb_network
 
