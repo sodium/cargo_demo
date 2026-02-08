@@ -27,7 +27,7 @@ $ docker compose up --build -d
 ```
 Enjoy :-)
 
-### 3. Application designs
+## Application designs
 Deployed Containers
 1. cargo-app - React Web app container
 2. spring-boot-app - Spring-boot API container
