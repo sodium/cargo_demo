@@ -39,17 +39,23 @@ Application URL:
 Web app URL: http://localhost:3000/
 
 Following pages are implemented for demostration
+
 **Home Page**: http://localhost:3000/
+
 **Flight Page**: http://localhost:3000/flights
 
 **CMS URL**: http://localhost:1337/
 
 **API URL**: http://localhost:8080/api/
+
 **API Endpoint**:
+
 1. POST /search-cargo
 
 Content-Type: application/json
+
 Request Payload Example:
+```
  {
         "carrierCode": "CX",
         "flightNo": "171",
@@ -57,6 +63,7 @@ Request Payload Example:
         "flightDate": "2025-12-15"
       
 }
+```
 
 
 ## Assumptions
