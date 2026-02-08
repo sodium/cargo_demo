@@ -1,3 +1,5 @@
+import { getCMSUrl } from "~/root";
+
 interface StrapiImageProps {
   src: string;
   alt: string | null;
@@ -6,7 +8,7 @@ interface StrapiImageProps {
   className?: string;
 }
 
-const STRAPI_API_URL = process.env.STRAPI_API_URL ?? "http://localhost:1337";
+const STRAPI_API_URL = getCMSUrl();
 
 export function getStrapiMedia(url: string | null) {
   if (url == null) return null;

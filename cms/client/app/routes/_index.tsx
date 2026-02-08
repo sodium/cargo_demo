@@ -8,6 +8,7 @@ import type {
   ArticleResponse,
   BannerResponse,
 } from "../types/cms";
+import { getCMSUrl } from "~/root";
 
 interface LoaderData {
   articlesData: ArticleResponse;
@@ -15,7 +16,7 @@ interface LoaderData {
 }
 
 async function loadDataFromCms(category: string, mediaField: "cover" | "image") {
-  const BASE_URL = import.meta.env.VITE_STRAPI_URL || "http://localhost:1337";
+  const BASE_URL = getCMSUrl();
   const path = "/api/" + category;
   const url = new URL(path, BASE_URL);
   url.search = qs.stringify({
@@ -50,7 +51,7 @@ export function meta(/*{}: Route.MetaArgs */) {
 
 export default function IndexRoute({ loaderData }: { loaderData: LoaderData }) {
   if (!loaderData) return <p>No data found</p>;
-  const baseUrl = import.meta.env.VITE_STRAPI_URL || "http://localhost:1337";
+  const baseUrl = getCMSUrl();
   const banner = loaderData.bannerData?.data?.[0] || null;
 
   const bannerImageUrl = banner?.image?.url

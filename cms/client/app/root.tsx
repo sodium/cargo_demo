@@ -20,7 +20,7 @@ import type { HeaderFooterResponse } from "./types/cms";
 
 // TODO: make this as common function to fetch header footer data, and use it in all routes
 export async function loadHeaderFooterData(): Promise<HeaderFooterResponse> {
-  const BASE_URL = import.meta.env.VITE_STRAPI_URL || "http://localhost:1337";
+  const BASE_URL = getCMSUrl();;
   const path = "/api/header-footer-items";
   const url = new URL(path, BASE_URL);
   url.search = qs.stringify({
@@ -77,7 +77,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export const getCMSUrl = () => {
-  return import.meta.env.VITE_STRAPI_URL || "http://localhost:1337";
+  return process.env.VITE_STRAPI_URL || "http://localhost:1337";
 };
 
 export default function App({ loaderData }: Route.ComponentProps) {
