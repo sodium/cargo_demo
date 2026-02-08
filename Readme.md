@@ -1,18 +1,14 @@
 # Cargo site demo
 
 ## Project Structure
-1. /cms/client - Web app for web site frontend built on React Router
-Entry web site built with React Router. CSS styling and site mobile responsive are powered by Tailwind CSS library.
+1. /cms/client - Web app for web site frontend built on React Router. The entry web site built with React Router. CSS styling and site mobile responsive are powered by Tailwind CSS library.
 
-2. /cms/server - A CMS for content management built on Strapi (https://strapi.io)
-Strapi is a Open Source Headless CMS. It is included in design to all site admin to manage articles, Hero Banner, header and footer links.
+2. /cms/server - A CMS for content management built on Strapi (https://strapi.io). Strapi is a Open Source Headless CMS. It is included in design to all site admin to manage articles, Hero Banner, header and footer links.
 Site content for demostration is already migrated to CMS DB during building docker container.
 
-3. /dbapi - Spring-boot web app for API
-Sprint-boot Web app for API to query Flight search result from mongoDB. 
+3. /dbapi - Spring-boot web app for API. Sprint-boot Web app for API to query Flight search result from mongoDB. 
 
-4. /db - MongoDB, application database
-Application database for Flight lists. Data for demo is migrated to DB during building docker container.
+4. /db - MongoDB, Application database for Flight lists. Data for demo is migrated to DB during building docker container.
 
 
 ## Build instruction
@@ -29,8 +25,9 @@ Docker image building and deployment for all component are managed by ./docker-c
 $ cd ./ # return to project root
 $ docker compose up --build -d
 ```
+Enjoy :-)
 
-### 3. Enjoy :-)
+### 3. Application designs
 Deployed Containers
 1. cargo-app - React Web app container
 2. spring-boot-app - Spring-boot API container
@@ -42,13 +39,13 @@ Application URL:
 Web app URL: http://localhost:3000/
 
 Following pages are implemented for demostration
-Home Page: http://localhost:3000/
-Flight Page: http://localhost:3000/flights
+**Home Page**: http://localhost:3000/
+**Flight Page**: http://localhost:3000/flights
 
-CMS URL: http://localhost:1337/
+**CMS URL**: http://localhost:1337/
 
-API URL: http://localhost:8080/api/
-API Endpoint:
+**API URL**: http://localhost:8080/api/
+**API Endpoint**:
 1. POST /search-cargo
 
 Content-Type: application/json
