@@ -7,7 +7,7 @@ ENV NODE_ENV=${NODE_ENV}
 WORKDIR /opt/
 COPY package.json package-lock.json ./
 COPY ./migrations/migrations.sh /usr/local/bin/
-COPY ./migrations/my-export.tar /tmp/
+COPY ./migrations/migration-1.tar /tmp/
 RUN npm install -g node-gyp
 RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install
 ENV PATH /opt/node_modules/.bin:$PATH

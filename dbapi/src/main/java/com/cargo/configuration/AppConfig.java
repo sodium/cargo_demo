@@ -26,7 +26,11 @@ public class AppConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Allow all endpoints
-                        .allowedOrigins("http://localhost:8080/", "http://webapp:5173/", "http://localhost:5173/") // Whitelisted domains
+                        .allowedOrigins("http://localhost:8080/",
+                                "http://webapp:5173/",
+                                "http://localhost:5173/",
+                                "http://localhost:3000/",
+                                "http://localhost/") // Whitelisted domains
                         .allowedMethods("GET", "POST") // Allowed HTTP methods
                         .allowedHeaders("*") // Allow all headers
                         .allowCredentials(true); // Allow credentials (cookies, etc.)

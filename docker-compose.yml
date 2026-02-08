@@ -57,6 +57,17 @@ services:
       - ./data/postgres:/var/lib/postgresql/data # Persist database data    
     networks:
       - mongodb_network
+  cargo-app:
+    build:
+      context: ./cms/client/.
+      dockerfile: Dockerfile
+    container_name: cargo-app
+    ports:
+      - '3000:3000'
+    environment:
+      VITE_STRAPI_URL: http://strapi:1337
+    networks:
+      - mongodb_network
 
 
 
