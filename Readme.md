@@ -67,7 +67,7 @@ Request Payload Example:
 
 
 ## Assumptions
-Due to time limitation (I built them in 2 days from scratch), following requirement are not implementation.
+Due to time limitation (I built them in 2 days from scratch), following requirements are not implementation.
 
 1. No Localization / i18N ready
 2. There is development configuration only, no configuration for Production / UAT environment implemented, please add environments in application.yaml of /dbapi.
