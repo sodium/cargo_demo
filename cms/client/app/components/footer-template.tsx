@@ -90,7 +90,7 @@ function FooterColumn({ title, items }: FooterColumnProps) {
                             className="inline-flex items-center"
                             href={item.href || "#"}
                         >
-                            <img className="h-20 w-auto" src={cmsBaseUrl+item.imageUrl} alt="" />
+                            <img className="h-20 w-auto" src={imageBaseUrl+item.imageUrl} alt="" />
                         </a>
                     </div>
                 ))}
