@@ -12,6 +12,11 @@ Site content for demostration is already migrated to CMS DB during building dock
 
 
 ## Build instruction
+### Prerequisite 
+1. Docker Desktop
+2. Node.js v18 or above
+
+
 ### 1. Build Sprint-boot application
 ```
 $ cd ./dbap
@@ -26,6 +31,15 @@ $ cd ./ # return to project root
 $ docker compose up --build -d
 ```
 Enjoy :-)
+
+**Further development detail, please refer**
+
+**CMS**: cms/server/README.md
+
+**Web App**: cms/client/README.md
+
+**MongoDB**: db/Readme.md
+
 
 ## Application designs
 Deployed Containers
