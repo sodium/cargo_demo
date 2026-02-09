@@ -79,7 +79,7 @@ Due to time limitation (I built them in 2 days from scratch), following requirem
 8. Multiple API layer is not demostrated here dure to time limitation (and resolving cross API calling with proxy and gateways are troublesome)
 9. Strapi CMS and MongoDB are selected in this project due to their lightweight.
 10. Documentation is not yet ready, I may update it in future here.
-11. All passwords and credentials in this project are not yet projected / encrypted , so this application is supposed to run on local workstation only, don't deploy to any public site.
+11. All passwords and credentials in this project are not yet protected / encrypted , so this application is supposed to run on local workstation only, don't deploy to any public site without handling.
 
 Thanks.
 
